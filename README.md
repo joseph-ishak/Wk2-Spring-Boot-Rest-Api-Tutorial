@@ -23,10 +23,10 @@
 Step 1. Add Dockerfile to root of Spring Boot APP
 
 <p><code>
-FROM openjdk:8-jdk-alpine /n
-ARG JAR_FILE=target/*.jar /n
-COPY ${JAR_FILE} app.jar /n
-ENTRYPOINT ["java","-jar","/app.jar"] /n
+FROM openjdk:8-jdk-alpine <br/>
+ARG JAR_FILE=target/*.jar <br/>
+COPY ${JAR_FILE} app.jar <br/>
+ENTRYPOINT ["java","-jar","/app.jar"] <br/>
 </p></code>
 
 Step 2. Run it
@@ -58,14 +58,14 @@ docker build -t wk2-sb-rest-api-tutorial .
 
 Step 6. Update Docker File
 <p><code>
-FROM openjdk:8-jdk-alpine /n
-RUN addgroup -S spring && adduser -S spring -G spring /n
-USER spring:spring /n
-ARG DEPENDENCY=target/dependency /n
-COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib /n
-COPY ${DEPENDENCY}/META-INF /app/META-INF /n
-COPY ${DEPENDENCY}/BOOT-INF/classes /app /n
-ENTRYPOINT ["java","-cp","app:app/lib/*","wk2SbRestApiTutorialApplication.Application"] /n
+FROM openjdk:8-jdk-alpine <br/>
+RUN addgroup -S spring && adduser -S spring -G spring <br/>
+USER spring:spring <br/>
+ARG DEPENDENCY=target/dependency <br/>
+COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib <br/>
+COPY ${DEPENDENCY}/META-INF /app/META-INF <br/>
+COPY ${DEPENDENCY}/BOOT-INF/classes /app <br/>
+ENTRYPOINT ["java","-cp","app:app/lib/*","wk2SbRestApiTutorialApplication.Application"] <br/>
 </p></code>
 
 Step 7. Create target/dependency directory and change into that directory
