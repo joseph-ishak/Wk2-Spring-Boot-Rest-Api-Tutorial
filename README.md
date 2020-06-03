@@ -2,7 +2,6 @@
 ###### Code Author: Joseph Ishak
 
 ## @Annotations Covered
-
 1. ### Entity  - JPA annotation to make this object ready for storage in a JPA-based data store
 2. ### Id - JPA annotations to indicate it’s the primary key 
 3. ### GeneratedValue - JPA annotations to indicate it’s the primary key is automatically populated by the JPA
@@ -16,68 +15,3 @@
 12. ### ExceptionHandler - Configures the advice to only respond if a specific exception is throw
 13. ### ResponseBody - Signals that this advice is rendered straight into the response body.
 14. ### ResponseStatus - Says to issue a specific HTTP Status 
-
-
-## This Project has been dockerized for personal practice. 
-
-Step 1. Add Dockerfile to root of Spring Boot APP
-
-<p><code>
-FROM openjdk:8-jdk-alpine <br/>
-ARG JAR_FILE=target/*.jar <br/>
-COPY ${JAR_FILE} app.jar <br/>
-ENTRYPOINT ["java","-jar","/app.jar"] <br/>
-</p></code>
-
-Step 2. Run it
-<p><code>
-docker build -t wk2-sb-rest-api-tutorial .
-</p></code>
-
-Step 3. Update Dockerfile
-
-<p><code>
-FROM openjdk:8-jdk-alpine
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring:spring
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
-</p></code>
-
-Step 4. Re Build 
-
-<p><code>
-docker build -t wk2-sb-rest-api-tutorial .
-</p></code>
-
-Step 5. Re-Run
-<p><code>
-docker build -t wk2-sb-rest-api-tutorial .
-</p></code>
-
-Step 6. Update Docker File
-<p><code>
-FROM openjdk:8-jdk-alpine <br/>
-RUN addgroup -S spring && adduser -S spring -G spring <br/>
-USER spring:spring <br/>
-ARG DEPENDENCY=target/dependency <br/>
-COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib <br/>
-COPY ${DEPENDENCY}/META-INF /app/META-INF <br/>
-COPY ${DEPENDENCY}/BOOT-INF/classes /app <br/>
-ENTRYPOINT ["java","-cp","app:app/lib/*","wk2SbRestApiTutorialApplication.Application"] <br/>
-</p></code>
-
-Step 7. Create target/dependency directory and change into that directory
-
-<p><code>mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)</p></code>
-
-Step 8. Re Build
-<p><code>
-docker build -t wk2-sb-rest-api-tutorial .
-</p></code>
-
-Step 9. Re-Run
-<p><code>
-docker build -t wk2-sb-rest-api-tutorial .
-</p></code>
